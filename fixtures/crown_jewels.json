@@ -1,0 +1,10 @@
+{
+  "_comment": "The organisation's most sensitive web systems. Blindspot shows which extensions can read them and generates a policy that keeps extensions off them. Host format is Chrome's runtime_blocked_hosts format: like a match pattern but WITHOUT a path, e.g. *://*.example.com. Replace these sample names with the bank's real hosts.",
+  "systems": [
+    {"name": "Core banking", "hosts": ["*://corebanking.bank.local"]},
+    {"name": "SWIFT portal", "hosts": ["*://swift.bank.local"]},
+    {"name": "Internet banking admin", "hosts": ["*://ib-admin.bank.local"]},
+    {"name": "HR and payroll", "hosts": ["*://hr.bank.local"]},
+    {"name": "Corporate email", "hosts": ["*://outlook.office.com", "*://outlook.office365.com"]}
+  ]
+}

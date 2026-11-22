@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Page Summarizer AI",
+  "version": "2.3.0",
+  "description": "Summarise any page with one click.",
+  "permissions": [
+    "storage",
+    "sidePanel",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "side_panel": {
+    "default_path": "panel.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

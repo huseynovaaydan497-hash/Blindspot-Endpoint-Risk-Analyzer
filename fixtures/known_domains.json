@@ -1,0 +1,33 @@
+{
+  "_comment": "Well-known services that are not counted as 'unrecognised servers'. Owner: C. Subdomains match automatically (googleapis.com covers fonts.googleapis.com).",
+  "domains": [
+    "google.com",
+    "googleapis.com",
+    "gstatic.com",
+    "googleusercontent.com",
+    "google-analytics.com",
+    "googletagmanager.com",
+    "chromewebstore.google.com",
+    "youtube.com",
+    "microsoft.com",
+    "microsoftedge.microsoft.com",
+    "live.com",
+    "office.com",
+    "apple.com",
+    "mozilla.org",
+    "w3.org",
+    "whatwg.org",
+    "schema.org",
+    "ietf.org",
+    "github.com",
+    "githubusercontent.com",
+    "cloudflare.com",
+    "jsdelivr.net",
+    "unpkg.com",
+    "wikipedia.org",
+    "sentry.io",
+    "example.com",
+    "example.org",
+    "example.net"
+  ]
+}

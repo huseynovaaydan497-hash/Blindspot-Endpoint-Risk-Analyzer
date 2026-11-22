@@ -1,0 +1,10 @@
+{
+  // Manifest V2 with comments, which Chrome tolerates
+  "manifest_version": 2,
+  "name": "Weather Now",
+  "version": "4.1.7",
+  "description": "Current weather in your toolbar.",
+  "permissions": ["<all_urls>", "webRequest", "webRequestBlocking", "management", "tabs"],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "background": { "scripts": ["bg.js"] }
+}

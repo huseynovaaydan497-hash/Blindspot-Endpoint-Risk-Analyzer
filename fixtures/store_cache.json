@@ -1,0 +1,59 @@
+{
+  "_comment": "Offline Chrome Web Store metadata. Entries below are SYNTHETIC and belong to the sample extensions in samples/. Before the demo, run scripts/fetch_store_metadata.py to add real entries for real extensions. Owner: C.",
+  "extensions": {
+    "nhijbplaepllkcidggbbegnmgffhkmie": {
+      "name": "Tab Notes",
+      "publisher": "Notewise Labs",
+      "users": 124000,
+      "rating": 4.6,
+      "last_updated": "2026-09-14",
+      "in_store": true,
+      "synthetic": true
+    },
+    "apkpogiehjchcpanckkkamkjkknfeifm": {
+      "name": "Quick Translate",
+      "publisher": "Lingo Tools",
+      "users": 58000,
+      "rating": 4.4,
+      "last_updated": "2026-10-02",
+      "in_store": true,
+      "synthetic": true
+    },
+    "lphihphommpabiboddoiggiljaigbljo": {
+      "name": "Dark Mode Everywhere",
+      "publisher": "Nightfall",
+      "users": 310000,
+      "rating": 4.2,
+      "last_updated": "2025-12-01",
+      "in_store": true,
+      "synthetic": true
+    },
+    "dadgjpkelhidnpaickmooijdbcfbkkck": {
+      "name": "Coupon Finder Pro",
+      "publisher": "",
+      "users": 820,
+      "rating": 3.1,
+      "last_updated": "2023-05-11",
+      "in_store": true,
+      "synthetic": true
+    },
+    "mmknagbcibgonaefdckllgfjnmnhbhca": {
+      "name": "Weather Now",
+      "publisher": "WX Apps",
+      "users": 46000,
+      "rating": 3.9,
+      "last_updated": "2022-08-30",
+      "in_store": false,
+      "synthetic": true
+    },
+    "bcihdejbkopcpklkopflglgipfhoahbe": {
+      "name": "Page Summarizer AI",
+      "publisher": "Summly Labs",
+      "users": 15400,
+      "rating": 4.5,
+      "last_updated": "2026-08-19",
+      "in_store": true,
+      "synthetic": true
+    }
+  }
+}

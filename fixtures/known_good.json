@@ -1,0 +1,10 @@
+{
+  "_comment": "Extensions the organisation has approved. Their score is capped at 'low'. Owner: B. Add real ids (password manager, corporate SSO, ...) before the demo.",
+  "extensions": {
+    "jfgjnbepeobbehklgokacfpkpebahoma": "Corp SSO Helper (internal, sample)",
+    "nmmhkkegccagdldgiimedpiccmgmieda": "Chrome Web Store Payments (Google, built-in)",
+    "ghbmnnjooekpmoecnnnilnnbdlolhkhi": "Google Docs Offline (Google, built-in)",
+    "jmjflgjpcpepeafmmgdpfkogkghcpiha": "Edge relevant text changes (Microsoft, built-in)",
+    "apkpogiehjchcpanckkkamkjkknfeifm": "Quick Translate (sample)"
+  }
+}

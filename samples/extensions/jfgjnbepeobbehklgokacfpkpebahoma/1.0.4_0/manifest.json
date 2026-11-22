@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Corp SSO Helper",
+  "version": "1.0.4",
+  "description": "Internal single sign-on helper (example).",
+  "permissions": [
+    "nativeMessaging",
+    "identity",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://*.corp.example.com/*"
+  ],
+  "background": {
+    "service_worker": "sw.js"
+  }
+}

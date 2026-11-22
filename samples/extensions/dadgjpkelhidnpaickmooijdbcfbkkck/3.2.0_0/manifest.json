@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Coupon Finder Pro",
+  "version": "3.2.0",
+  "description": "Finds coupons automatically while you shop.",
+  "permissions": [
+    "cookies",
+    "tabs",
+    "storage",
+    "webRequest",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}

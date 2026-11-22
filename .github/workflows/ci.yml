@@ -1,0 +1,20 @@
+name: tests
+
+# Runs on every push and pull request. D merges a pull request only when this is green.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - run: python -m pytest -q
+      - name: Scan the samples and build the report
+        run: python -m blindspot scan samples/extensions --out reports --quiet

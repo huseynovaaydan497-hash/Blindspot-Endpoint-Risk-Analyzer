@@ -1,0 +1,25 @@
+{
+  "_comment": "Domains of AI services. An extension whose code talks to one of these can send page content to an AI provider. Subdomains match automatically. Owner: C.",
+  "domains": [
+    "openai.com",
+    "chatgpt.com",
+    "openai.azure.com",
+    "anthropic.com",
+    "claude.ai",
+    "generativelanguage.googleapis.com",
+    "aiplatform.googleapis.com",
+    "gemini.google.com",
+    "copilot.microsoft.com",
+    "mistral.ai",
+    "cohere.ai",
+    "cohere.com",
+    "perplexity.ai",
+    "deepseek.com",
+    "groq.com",
+    "openrouter.ai",
+    "together.xyz",
+    "huggingface.co",
+    "x.ai",
+    "grok.com"
+  ]
+}

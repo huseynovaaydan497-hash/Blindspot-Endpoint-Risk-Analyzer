@@ -1,0 +1,6 @@
+# The analyzer, collector, report and CLI use only the Python standard library.
+# These are for the API server and the tests.
+fastapi>=0.110
+uvicorn[standard]>=0.29
+httpx>=0.27
+pytest>=8.0

@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Blindspot</title>
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="opening" aria-hidden="true">
+    <div class="opening-eye">
+      <div class="opening-lid"></div>
+      <div class="opening-iris"><img src="img/logo.png" alt="" width="74" height="74"></div>
+    </div>
+  </div>
+  <!-- Owner: E. Talks to the API through api.js only. Every number on screen comes from agents' reports. -->
+  <div class="bg-fx" aria-hidden="true"><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i><div class="grid-fx"></div></div>
+
+  <aside class="rail">
+    <div class="mark">
+      <div class="logo-wrap">
+        <span class="logo-ring"></span><span class="logo-ring r2"></span>
+        <img src="img/logo.png" alt="" width="92" height="92">
+      </div>
+      <b>Blindspot</b>
+      <small>Supply-chain guard</small>
+    </div>
+
+    <nav class="nav" aria-label="Views">
+      <span class="nav-glow" aria-hidden="true"></span>
+      <div class="nav-label">Monitor</div>
+      <button data-view="overview" type="button" title="Overview"><i data-icon="grid"></i><span class="lbl">Overview</span></button>
+      <button data-view="extensions" type="button" title="Extensions"><i data-icon="puzzle"></i><span class="lbl">Extensions</span><span class="count" id="n-extensions"></span></button>
+      <button data-view="machines" type="button" title="Machines"><i data-icon="monitor"></i><span class="lbl">Machines</span><span class="count" id="n-machines"></span></button>
+      <button data-view="software" type="button" title="Software"><i data-icon="package"></i><span class="lbl">Software</span><span class="count" id="n-software"></span></button>
+      <div class="nav-label">Protect</div>
+      <button data-view="guard" type="button" title="Guard"><i data-icon="shield"></i><span class="lbl">Guard</span><span class="count" id="n-guard"></span></button>
+      <button data-view="crown" type="button" title="Critical systems"><i data-icon="target"></i><span class="lbl">Critical systems</span><span class="count" id="n-crown"></span></button>
+      <div class="nav-label">Configure</div>
+      <button data-view="alerts" type="button" title="Alerts"><i data-icon="bell"></i><span class="lbl">Alerts</span><span class="count" id="n-alerts"></span></button>
+      <button data-view="add" type="button" title="Add a computer"><i data-icon="plus"></i><span class="lbl">Add a computer</span></button>
+    </nav>
+
+    <div class="rail-foot">
+      <div id="source" class="source"><span class="lbl">Connecting…</span></div>
+      <details class="rail-tools">
+        <summary aria-label="Reports and exports"><i data-icon="download"></i><span class="lbl">Reports &amp; exports</span></summary>
+        <a id="report-link" class="foot-link" target="_blank" rel="noopener" title="Risk assessment report"><i data-icon="file"></i><span class="lbl">Risk assessment report</span></a>
+        <button id="dl-chrome" class="foot-link" type="button" title="Download Chrome policy"><i data-icon="download"></i><span class="lbl">Chrome policy</span></button>
+        <button id="dl-applocker" class="foot-link" type="button" title="Download AppLocker policy"><i data-icon="download"></i><span class="lbl">AppLocker policy</span></button>
+      </details>
+      <button id="rail-toggle" class="foot-link" type="button" title="Collapse sidebar"><i data-icon="chevrons"></i><span class="lbl">Collapse</span></button>
+    </div>
+  </aside>
+
+  <main>
+    <div id="alertbar" class="alertbar hidden" role="alert" aria-live="assertive"></div>
+    <header class="topbar">
+      <div class="titles">
+        <div class="crumb"><span>Blindspot</span><i data-icon="chev"></i><span id="crumb-view">Overview</span></div>
+        <h1 id="page-title">Overview</h1>
+        <p id="page-sub"></p>
+      </div>
+      <div class="top-actions">
+        <details class="display-options">
+          <summary title="Display settings">Display</summary>
+          <div class="view-opts">
+            <div class="seg icons" id="layout-seg" role="group" aria-label="Detail panel position">
+              <button type="button" data-layout="h" title="Detail panel on the side (horizontal)"><i data-icon="cols"></i></button>
+              <button type="button" data-layout="v" title="Detail panel below (vertical)"><i data-icon="rows"></i></button>
+            </div>
+            <button class="icon-btn" id="motion-btn" type="button" title="Calm motion: stop looping animations" aria-pressed="false"><i data-icon="wave"></i></button>
+          </div>
+        </details>
+        <button class="search-btn" id="palette-btn" type="button"><i data-icon="search"></i><span>Search everything</span><kbd>Ctrl K</kbd></button>
+      </div>
+    </header>
+
+    <div id="actionbar" class="actionbar" aria-label="Needs action"></div>
+
+    <!-- Overview -->
+    <section id="view-overview" class="view">
+      <div id="ov-empty" class="hero card hidden">
+        <div class="hero-radar" aria-hidden="true"><i></i><i></i><i></i><img src="img/logo.png" alt=""></div>
+        <div>
+          <h2>Waiting for the first computer</h2>
+          <p>Add a computer to see its browser extensions, installed software, and security risks here.</p>
+          <button class="btn primary" type="button" data-goto="add"><i data-icon="plus"></i> Add a computer</button>
+        </div>
+      </div>
+      <div id="ov-body" class="ov-grid hidden">
+        <div class="kpis span12" id="kpis"></div>
+        <div class="card span5">
+          <div class="card-h"><h3>Risk posture</h3><span class="hint">installs rated High or Critical</span></div>
+          <div id="ov-gauge"></div>
+        </div>
+        <div class="card span7">
+          <div class="card-h"><h3>Riskiest extensions</h3><button class="link-btn" type="button" data-goto="extensions">All extensions <i data-icon="arrow"></i></button></div>
+          <div id="ov-top"></div>
+        </div>
+        <div class="overview-more span12">
+          <details class="card overview-fold">
+            <summary>Extension decisions</summary>
+            <div id="ov-decisions"></div>
+          </details>
+          <details class="card overview-fold">
+            <summary>Software status</summary>
+            <div id="ov-software"></div>
+          </details>
+          <details class="card overview-fold">
+            <summary>Fleet heatmap</summary>
+            <div id="ov-heat"></div>
+            <div id="ov-fleet"></div>
+            <button class="link-btn" type="button" data-goto="machines">Open machines <i data-icon="arrow"></i></button>
+          </details>
+          <details class="card overview-fold">
+            <summary>Critical system exposure</summary>
+            <div id="ov-crown"></div>
+            <button class="link-btn" type="button" data-goto="crown">Open critical systems <i data-icon="arrow"></i></button>
+          </details>
+          <details class="card overview-fold">
+            <summary>Live activity</summary>
+            <ul class="timeline" id="ov-log"></ul>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Extensions -->
+    <section id="view-extensions" class="view hidden">
+      <div class="split">
+        <div class="card flush">
+          <div class="toolbar">
+            <label class="search"><i data-icon="search"></i><input id="filter" type="search" placeholder="Search extensions or permissions" aria-label="Search extensions"></label>
+            <div class="seg" id="ext-seg" role="group" aria-label="Decision"></div>
+          </div>
+          <div class="table-wrap">
+            <table class="data">
+              <thead><tr>
+                <th class="sortable num" data-sort="score">Score</th>
+                <th class="sortable" data-sort="name">Extension</th>
+                <th class="hide-sm">Signals</th>
+                <th class="sortable" data-sort="recommendation">Decision</th>
+                <th class="sortable num" data-sort="installs">Machines</th>
+              </tr></thead>
+              <tbody id="ext-rows"></tbody>
+            </table>
+          </div>
+        </div>
+        <article id="ext-detail" class="card detail" aria-live="polite"></article>
+      </div>
+    </section>
+
+    <!-- Machines -->
+    <section id="view-machines" class="view hidden">
+      <div class="kpis compact" id="m-kpis"></div>
+      <div class="split wide-left">
+        <div class="card flush">
+          <div class="toolbar">
+            <label class="search"><i data-icon="search"></i><input id="m-filter" type="search" placeholder="Search computers or OS" aria-label="Search machines"></label>
+            <div class="seg" id="m-seg" role="group" aria-label="Risk"></div>
+            <div class="seg" id="m-os" role="group" aria-label="Operating system"></div>
+            <div class="seg icons" id="m-mode" role="group" aria-label="Layout">
+              <button type="button" data-mode="map" title="Network map"><i data-icon="map"></i></button>
+              <button type="button" data-mode="grid" title="Tiles"><i data-icon="tiles"></i></button>
+              <button type="button" data-mode="list" title="List"><i data-icon="list"></i></button>
+            </div>
+          </div>
+          <div id="m-canvas" class="m-canvas" role="listbox" aria-label="Machines"></div>
+          <div id="m-legend" class="m-legend"></div>
+        </div>
+        <article id="machine-detail" class="card detail"></article>
+      </div>
+    </section>
+
+    <!-- Software -->
+    <section id="view-software" class="view hidden">
+      <details class="card software-tools"><summary>Vulnerability feeds &amp; score breakdown</summary>
+      <div class="sw-top">
+      <div class="card intel">
+        <div class="intel-main">
+          <div class="intel-ic"><i data-icon="radar"></i></div>
+          <div>
+            <h3>Vulnerability intelligence</h3>
+            <div id="feed-status" class="feed-status"></div>
+          </div>
+        </div>
+        <button class="btn primary" id="feed-refresh" type="button">Check for new CVEs now</button>
+        <details class="nvdkey"><summary>NVD API key (optional, about 10 times faster)</summary>
+          <p class="small quiet">Free from <a href="https://nvd.nist.gov/developers/request-an-api-key" target="_blank" rel="noopener">nvd.nist.gov</a>. Without it NVD allows one request every 6 seconds.</p>
+          <div class="addr inline"><input id="nvd-key" type="text" spellcheck="false" autocomplete="off" placeholder="Paste key" aria-label="NVD API key">
+          <button class="btn ghost" id="nvd-key-save" type="button">Save</button></div>
+        </details>
+      </div>
+        <div class="card">
+          <div class="card-h"><h3>Highest CVSS per program</h3><span class="hint">click a bar to filter</span></div>
+          <div id="sw-hist" class="hist"></div>
+        </div>
+      </div>
+      </details>
+      <div class="kpis compact" id="sw-kpis"></div>
+      <div class="split">
+        <div class="card flush">
+          <div class="toolbar">
+            <label class="search"><i data-icon="search"></i><input id="sw-filter" type="search" placeholder="Search software or publisher" aria-label="Search software"></label>
+            <div class="seg" id="sw-seg" role="group" aria-label="Status"></div>
+          </div>
+          <div class="table-wrap">
+            <table class="data">
+              <thead><tr>
+                <th class="sortable" data-ssort="cvss">CVSS</th>
+                <th class="sortable" data-ssort="name">Software</th>
+                <th>Status</th>
+                <th class="sortable" data-ssort="machines">Machines</th>
+              </tr></thead>
+              <tbody id="sw-rows"></tbody>
+            </table>
+          </div>
+        </div>
+        <article id="sw-detail" class="card detail"></article>
+      </div>
+    </section>
+
+    <!-- Guard -->
+    <section id="view-guard" class="view hidden">
+      <div class="card intro">
+        <div class="intro-ic"><i data-icon="shield"></i></div>
+        <div>
+          <h2>Guard approves code, not IDs</h2>
+          <p>An extension keeps its ID when a new version ships, so a hijacked update passes any allowlist.
+            Guard pins every approved extension to the build that was reviewed. Harmless updates are approved on their own;
+            anything that gains access is quarantined. Approved software is blocked the moment an advisory hits its version,
+            and released when the fix is installed.</p>
+        </div>
+      </div>
+      <div class="kpis compact" id="g-kpis"></div>
+      <div class="guard-grid">
+        <div>
+          <div class="card flush">
+            <div class="section-title"><h3>Extensions</h3><span class="quiet small" id="g-ext-note"></span></div>
+            <div id="g-ext"></div>
+          </div>
+          <div class="card flush" style="margin-top:18px">
+            <div class="section-title">
+              <h3>Software catalog</h3>
+              <button class="btn" id="sync-btn" type="button">Check for new CVEs now</button>
+            </div>
+            <div id="g-sw"></div>
+          </div>
+        </div>
+        <div>
+          <div class="card flush">
+            <div class="section-title"><h3>Activity</h3><span class="live-dot">live</span></div>
+            <ul class="timeline padded" id="g-log"></ul>
+          </div>
+          <details class="card pad"><summary>Download enforcement policies</summary>
+            <div class="downloads">
+              <button class="dl" data-dl="chrome" type="button"><i data-icon="chrome"></i><span><b>Chrome and Edge policy</b><small>JSON</small></span><i data-icon="download"></i></button>
+              <button class="dl" data-dl="reg" type="button"><i data-icon="windows"></i><span><b>Chrome and Edge policy</b><small>Windows .reg</small></span><i data-icon="download"></i></button>
+              <button class="dl" data-dl="applocker" type="button"><i data-icon="lock"></i><span><b>AppLocker rules</b><small>audit mode</small></span><i data-icon="download"></i></button>
+              <button class="dl" data-dl="swjson" type="button"><i data-icon="package"></i><span><b>Software decisions</b><small>JSON</small></span><i data-icon="download"></i></button>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Alerts -->
+    <section id="view-alerts" class="view hidden">
+      <div class="card intro">
+        <div class="intro-ic tg"><i data-icon="send"></i></div>
+        <div>
+          <h2>Alerts on Telegram</h2>
+          <p>A message on your phone the moment Guard quarantines an extension, a new CVE blocks installed software,
+            or a high-risk extension shows up on a computer.</p>
+        </div>
+      </div>
+      <div class="add-grid">
+        <div class="card pad">
+          <ol class="steps">
+            <li>
+              <h3>Create a bot</h3>
+              <p class="small">In Telegram, open <b>@BotFather</b>, send <code>/newbot</code> and pick a name.
+                It answers with a token that looks like <code>123456789:AAE…</code>. Paste it here.</p>
+              <div class="addr"><input id="tg-token" type="text" spellcheck="false" autocomplete="off" placeholder="Bot token" aria-label="Bot token"></div>
+            </li>
+            <li>
+              <h3>Send your bot a message</h3>
+              <p class="small">Open the bot from BotFather's link and send it anything, for example <code>hi</code>.
+                For a team group: add the bot to the group and write a message there.</p>
+              <button class="btn ghost" id="tg-find" type="button">Find my chat</button>
+              <div id="tg-chats" class="chips" style="margin-top:10px"></div>
+            </li>
+            <li>
+              <h3>Choose what to send</h3>
+              <label class="check"><input type="checkbox" value="quarantine" checked><span class="switch"></span> An extension update is quarantined</label>
+              <label class="check"><input type="checkbox" value="advisory" checked><span class="switch"></span> A new CVE blocks installed software</label>
+              <label class="check"><input type="checkbox" value="high_risk" checked><span class="switch"></span> A High or Critical extension appears</label>
+            </li>
+            <li>
+              <h3>Save and test</h3>
+              <div class="gactions" style="margin:6px 0 0">
+                <button class="btn primary" id="tg-save" type="button">Save and send a test message</button>
+              </div>
+            </li>
+          </ol>
+        </div>
+        <div>
+          <div class="card pad" id="tg-status"></div>
+          <details class="card pad"><summary>Preview an alert</summary>
+            <div class="phone">
+              <div class="phone-bar"><span class="tg-av"><img src="img/logo.png" alt=""></span><b>Blindspot</b><small>bot</small></div>
+              <div class="tg-preview"><b>Blindspot: Extension quarantined</b><br>
+                • <b>Blindspot Test Extension 1.1.0</b><br>on PC-5GY52V3. New permission: cookies, scripting, tabs; Now asks for access to every website. Same extension ID, new code.<br><br>
+                <u>Open the dashboard</u></div>
+            </div>
+            <p class="quiet small">Several findings from one report arrive as one message. The bot token is stored only in this server's database.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Add a computer -->
+    <section id="view-add" class="view hidden">
+      <div class="card intro">
+        <div class="intro-ic"><i data-icon="cpu"></i></div>
+        <div>
+          <h2>Add a computer</h2>
+          <p>The agent reads the browser extensions and installed programs on a computer, analyses them there,
+            and sends the results here. It needs Python 3.10 or newer and nothing else.</p>
+        </div>
+      </div>
+      <div class="add-grid">
+        <div class="card pad">
+          <ol class="steps">
+            <li>
+              <h3>Check the address teammates will use</h3>
+              <p class="quiet small">Other computers must reach this server over the network, so <code>localhost</code> only works on this computer.</p>
+              <div class="addr">
+                <input id="server-url" type="text" spellcheck="false" aria-label="Server address">
+                <div id="server-suggest" class="chips"></div>
+              </div>
+            </li>
+            <li>
+              <h3>Download the agent</h3>
+              <p class="quiet small">The address is already written inside the start files.</p>
+              <a id="agent-dl" class="btn primary" href="#"><i data-icon="download"></i> Download blindspot-agent.zip</a>
+            </li>
+            <li>
+              <h3>On each computer: unzip and double-click</h3>
+              <p class="small"><b>run_agent.bat</b> reports once. <b>watch_agent.bat</b> keeps watching and reports every 10 minutes.
+                On Mac or Linux: <code>sh run_agent.sh</code>.</p>
+              <details><summary>Run from a terminal</summary>
+              <p class="quiet small">In the blindspot folder, run:</p>
+              <div class="term">
+                <div class="term-bar"><i></i><i></i><i></i><span>terminal</span><button class="copy" id="cmd-copy" type="button" title="Copy"><i data-icon="copy"></i></button></div>
+                <code class="cmd" id="cmd-line"></code>
+              </div>
+              </details>
+            </li>
+            <li>
+              <h3>Watch it arrive</h3>
+              <p class="quiet small">This page checks for new reports every 10 seconds. <span id="poll-state"></span></p>
+            </li>
+          </ol>
+        </div>
+        <div>
+          <div class="card pad">
+            <div class="card-h"><h3>Reported so far</h3><span class="live-dot">listening</span></div>
+            <ul class="arrivals" id="arrivals"></ul>
+          </div>
+          <details class="card pad danger"><summary>Reset server data</summary>
+            <p class="quiet small">Removes every computer, extension, approval and event from this server.
+              The agents fill it again when they next report.</p>
+            <button class="btn danger-btn" id="clear-btn" type="button">Clear all data</button>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Critical systems -->
+    <section id="view-crown" class="view hidden">
+      <div class="card intro">
+        <div class="intro-ic red"><i data-icon="target"></i></div>
+        <div>
+          <h2>Who can reach your critical systems</h2>
+          <p>If one of these extensions turned hostile tomorrow, this is what it could read and change.
+            Containment keeps useful extensions working everywhere else.</p>
+        </div>
+        <button class="btn primary" id="contain-btn" type="button"><i data-icon="download"></i> Download containment policy</button>
+      </div>
+      <div id="crown-list" class="crown-list"></div>
+    </section>
+  </main>
+
+  <!-- Command palette -->
+  <div id="palette" class="palette hidden" role="dialog" aria-modal="true" aria-label="Search">
+    <div class="palette-box">
+      <label class="palette-in"><i data-icon="search"></i><input id="palette-input" type="text" placeholder="Jump to an extension, machine, program or page…" autocomplete="off" spellcheck="false"><kbd>Esc</kbd></label>
+      <div id="palette-list" class="palette-list" role="listbox"></div>
+      <div class="palette-foot"><span><kbd>↑</kbd><kbd>↓</kbd> move</span><span><kbd>Enter</kbd> open</span><span><kbd>Esc</kbd> close</span></div>
+    </div>
+  </div>
+  <div id="tip" class="tip" role="tooltip"></div>
+
+  <script src="api.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

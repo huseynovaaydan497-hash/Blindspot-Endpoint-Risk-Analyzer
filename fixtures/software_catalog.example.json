@@ -1,0 +1,63 @@
+{
+  "_comment": "EXAMPLE catalog used by the tests and the synthetic demo fleet. The real catalog is fixtures/software_catalog.json plus what you approve in the dashboard.",
+  "block_at_decision": "Attend",
+  "approved": [
+    {
+      "name": "7-Zip",
+      "match": "^7-Zip\\b",
+      "publisher": "Igor Pavlov",
+      "approved_version": "24.08",
+      "approved_by": "IT",
+      "mission": "support",
+      "note": "Example entry: replace with your own approved list.",
+      "signer": null,
+      "product": null
+    },
+    {
+      "name": "Google Chrome",
+      "match": "^Google Chrome$",
+      "publisher": "Google LLC",
+      "approved_version": "131.0",
+      "approved_by": "IT",
+      "mission": "essential",
+      "signer": "O=GOOGLE LLC, L=MOUNTAIN VIEW, S=CALIFORNIA, C=US",
+      "product": "GOOGLE CHROME"
+    },
+    {
+      "name": "Microsoft Edge",
+      "match": "^Microsoft Edge$",
+      "publisher": "Microsoft Corporation",
+      "approved_version": "131.0",
+      "approved_by": "IT",
+      "mission": "essential",
+      "signer": "O=MICROSOFT CORPORATION, L=REDMOND, S=WASHINGTON, C=US",
+      "product": "MICROSOFT EDGE"
+    },
+    {
+      "name": "Zoom Workplace",
+      "match": "^Zoom( Workplace)?\\b",
+      "publisher": "Zoom Video Communications",
+      "approved_version": "6.2",
+      "approved_by": "IT",
+      "mission": "support",
+      "signer": null,
+      "product": null
+    }
+  ],
+  "remote_access_tools": [
+    "AnyDesk",
+    "TeamViewer",
+    "RustDesk",
+    "ScreenConnect",
+    "ConnectWise Control",
+    "Splashtop",
+    "AnyViewer",
+    "Atera",
+    "LogMeIn",
+    "UltraViewer",
+    "Ammyy",
+    "RemotePC",
+    "Chrome Remote Desktop",
+    "NetSupport"
+  ]
+}

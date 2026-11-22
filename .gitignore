@@ -1,0 +1,23 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# local data and outputs
+*.db
+reports/
+inventory*.json
+
+# real extensions copied from your own browser: analyse locally, never commit
+samples/real/
+
+# secrets
+.env
+*.pem
+*.key
+
+.DS_Store
+.idea/
+.vscode/

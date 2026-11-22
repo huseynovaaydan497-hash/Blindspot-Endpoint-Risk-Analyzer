@@ -1,0 +1,115 @@
+{
+  "_comment": "Risk points per permission. Owner: B. Tune these numbers, do not rename keys. Plain-language text lives in permission_glossary.json.",
+  "api": {
+    "debugger": 25,
+    "webAuthenticationProxy": 20,
+    "nativeMessaging": 20,
+    "cookies": 20,
+    "proxy": 18,
+    "vpnProvider": 18,
+    "webRequest": 15,
+    "management": 15,
+    "desktopCapture": 15,
+    "certificateProvider": 15,
+    "enterprise.platformKeys": 15,
+    "userScripts": 15,
+    "clipboardRead": 12,
+    "privacy": 12,
+    "tabCapture": 12,
+    "declarativeNetRequestWithHostAccess": 12,
+    "webRequestBlocking": 10,
+    "history": 10,
+    "pageCapture": 10,
+    "contentSettings": 10,
+    "browsingData": 10,
+    "downloads.open": 10,
+    "scripting": 8,
+    "tabs": 8,
+    "downloads": 8,
+    "geolocation": 8,
+    "identity.email": 8,
+    "bookmarks": 6,
+    "webNavigation": 6,
+    "identity": 6,
+    "topSites": 5,
+    "declarativeNetRequest": 4,
+    "clipboardWrite": 3,
+    "system.storage": 3,
+    "activeTab": 2,
+    "offscreen": 2,
+    "idle": 2,
+    "system.cpu": 2,
+    "system.memory": 2,
+    "storage": 1,
+    "unlimitedStorage": 1,
+    "alarms": 1,
+    "notifications": 1,
+    "contextMenus": 1,
+    "sidePanel": 1,
+    "fontSettings": 1,
+    "tts": 1,
+    "power": 1,
+    "webview": 4
+  },
+  "unknown_api": 3,
+  "host": {
+    "broad": 40,
+    "specific_each": 3,
+    "specific_cap": 12
+  },
+  "content_script_broad": 40,
+  "optional_factor": 0.4,
+  "csp_unsafe_eval": 10,
+  "combos": [
+    {
+      "requires": [
+        "cookies",
+        "@broad_host"
+      ],
+      "points": 15,
+      "severity": "critical",
+      "title": "Session cookies on every website",
+      "detail": "Can read login session cookies for any site you visit, which is enough to take over those accounts."
+    },
+    {
+      "requires": [
+        "webRequest",
+        "@broad_host"
+      ],
+      "points": 10,
+      "severity": "high",
+      "title": "Watches all web traffic",
+      "detail": "Can observe every web request your browser makes, on every site."
+    },
+    {
+      "requires": [
+        "webRequestBlocking",
+        "@broad_host"
+      ],
+      "points": 8,
+      "severity": "high",
+      "title": "Can alter web traffic in flight",
+      "detail": "Can block or rewrite requests and responses before the page sees them."
+    },
+    {
+      "requires": [
+        "nativeMessaging",
+        "@broad_host"
+      ],
+      "points": 10,
+      "severity": "high",
+      "title": "Bridges web pages to local programs",
+      "detail": "Combines access to every site with a channel to programs running outside the browser."
+    },
+    {
+      "requires": [
+        "scripting",
+        "@broad_host"
+      ],
+      "points": 8,
+      "severity": "high",
+      "title": "Can inject code into any page",
+      "detail": "Can run its own code inside every website you open."
+    }
+  ]
+}

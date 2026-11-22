@@ -1,0 +1,21 @@
+{
+  "_comment": "The organisation's approved software catalog. Normally you approve programs in the dashboard (Software > a program > Approve this version); those approvals are stored in the server database. Entries here are approved for every server that uses this file. When an advisory hits an approved version, that version is blocked until a fixed version is installed, without a new ticket. 'signer' and 'product' are the Authenticode publisher fields used for the AppLocker export. Example entries: software_catalog.example.json. Owner: A + D.",
+  "block_at_decision": "Attend",
+  "approved": [],
+  "remote_access_tools": [
+    "AnyDesk",
+    "TeamViewer",
+    "RustDesk",
+    "ScreenConnect",
+    "ConnectWise Control",
+    "Splashtop",
+    "AnyViewer",
+    "Atera",
+    "LogMeIn",
+    "UltraViewer",
+    "Ammyy",
+    "RemotePC",
+    "Chrome Remote Desktop",
+    "NetSupport"
+  ]
+}

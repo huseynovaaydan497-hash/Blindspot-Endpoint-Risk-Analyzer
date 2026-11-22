@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Dark Mode Everywhere",
+  "version": "5.0.3",
+  "description": "Dark theme for every website.",
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ]
+}

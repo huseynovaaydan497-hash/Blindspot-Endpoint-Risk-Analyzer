@@ -1,0 +1,50 @@
+{
+  "_comment": "Maps what Blindspot observes to MITRE ATT&CK Enterprise techniques (https://attack.mitre.org). Every extension is T1176.001 Browser Extensions; these entries say what a hostile version could do next. Owner: B + C. Keys: API permission names, '@broad_host', or the start of a finding title.",
+  "base": {"id": "T1176.001", "name": "Software Extensions: Browser Extensions"},
+  "techniques": {
+    "T1539": "Steal Web Session Cookie",
+    "T1185": "Browser Session Hijacking",
+    "T1217": "Browser Information Discovery",
+    "T1115": "Clipboard Data",
+    "T1113": "Screen Capture",
+    "T1090": "Proxy",
+    "T1562.001": "Impair Defenses: Disable or Modify Tools",
+    "T1056.001": "Input Capture: Keylogging",
+    "T1059.007": "Command and Scripting Interpreter: JavaScript",
+    "T1027": "Obfuscated Files or Information",
+    "T1041": "Exfiltration Over C2 Channel"
+  },
+  "permissions": {
+    "cookies": "T1539",
+    "@broad_host": "T1185",
+    "webRequest": "T1185",
+    "webRequestBlocking": "T1185",
+    "debugger": "T1185",
+    "history": "T1217",
+    "tabs": "T1217",
+    "topSites": "T1217",
+    "bookmarks": "T1217",
+    "clipboardRead": "T1115",
+    "desktopCapture": "T1113",
+    "tabCapture": "T1113",
+    "proxy": "T1090",
+    "management": "T1562.001"
+  },
+  "findings": {
+    "Runs text as code": "T1059.007",
+    "Builds code at runtime": "T1059.007",
+    "Timer runs a string as code": "T1059.007",
+    "Injects script elements": "T1059.007",
+    "Obfuscated code": "T1027",
+    "Decodes hidden data": "T1027",
+    "Builds strings from character codes": "T1027",
+    "Random-looking": "T1027",
+    "Reads all cookies": "T1539",
+    "Reads page cookies": "T1539",
+    "Listens to keystrokes": "T1056.001",
+    "Disables or removes other extensions": "T1562.001",
+    "Changes the proxy": "T1090",
+    "Talks to": "T1041",
+    "Connects to raw IP addresses": "T1041"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "_comment": "Vulnerability advisories for desktop software. 'published' is what the server knows at start; 'incoming' is delivered by 'Sync advisory feed' in the Guard tab (demo of a new CVE arriving). Real CVEs, values from NVD / ZDI / CISA KEV. exploitation: none | poc | active (active = listed in CISA KEV). Owner: C.",
+  "published": [
+    {
+      "cve": "CVE-2024-11477",
+      "title": "7-Zip Zstandard decompression integer underflow, remote code execution",
+      "product": "7-Zip",
+      "match": "^7-Zip\\b",
+      "fixed": "24.07",
+      "cvss": 7.8,
+      "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+      "exploitation": "none",
+      "automatable": "no",
+      "kev": false,
+      "published": "2024-11-22",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-11477",
+        "https://www.zerodayinitiative.com/advisories/ZDI-24-1532/"
+      ]
+    }
+  ],
+  "incoming": [
+    {
+      "cve": "CVE-2025-0411",
+      "title": "7-Zip Mark-of-the-Web bypass: files extracted from a downloaded archive lose the internet warning",
+      "product": "7-Zip",
+      "match": "^7-Zip\\b",
+      "fixed": "24.09",
+      "cvss": 7.0,
+      "vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+      "exploitation": "active",
+      "automatable": "no",
+      "kev": true,
+      "kev_added": "2025-02-06",
+      "published": "2025-01-25",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-0411",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2025-0411",
+        "https://www.zerodayinitiative.com/advisories/ZDI-25-045/"
+      ]
+    }
+  ]
+}
